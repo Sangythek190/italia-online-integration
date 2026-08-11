@@ -2,6 +2,20 @@
 
 Interactive GitHub Pages demo showcasing the Italia Online (IOL) Stripe Connect billing integration.
 
+## Live Demo
+
+[View the interactive timeline](https://sangythek190.github.io/italia-online-integration/)
+
+## All Partner Demos
+
+| Integration | Demo |
+|------------|------|
+| [Partner Playbook (All 5)](https://github.com/Sangythek190/partner-integration-playbook) | [Combined Hub](https://sangythek190.github.io/partner-integration-playbook/) |
+| [Telkom — 30+ Automations](https://github.com/Sangythek190/enterprise-automation-architecture) | [Interactive Demo](https://sangythek190.github.io/enterprise-automation-architecture/) |
+| [Neighborly — 16 Brands](https://github.com/Sangythek190/neighborly-integration-dashboard) | [Dashboard Demo](https://sangythek190.github.io/neighborly-integration-dashboard/) |
+| **Italia Online — Stripe Connect** | **You are here** |
+| [Kaseya — $2.2M Enterprise](https://github.com/Sangythek190/kaseya-enterprise-integration) | [Executive Briefing](https://sangythek190.github.io/kaseya-enterprise-integration/) |
+
 ## About
 
 Italia Online is Italy's largest digital services network, serving 130,000 paying SMBs through 700+ sales agents. This case study documents the end-to-end integration of Stripe Connect (Standard model) for automated EUR billing, product activation, and partner onboarding.
