@@ -536,6 +536,107 @@
     border-top: 1px solid var(--gray-200);
   }
 
+  /* ── Partner Context ── */
+  .partner-context {
+    background: var(--bg-warm);
+    border-top: 1px solid var(--gray-200);
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .partner-context-inner {
+    max-width: var(--max-w);
+    margin: 0 auto;
+    padding: 80px 24px;
+  }
+  .partner-cards {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 24px;
+  }
+  .partner-card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 32px;
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow .3s ease, transform .2s ease;
+  }
+  .partner-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .partner-card h4 {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--gray-900);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .partner-card h4 .card-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    flex-shrink: 0;
+  }
+  .partner-card p {
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.7;
+  }
+  .partner-card.full-width {
+    grid-column: 1 / -1;
+  }
+  .partner-card.full-width h4 .card-icon {
+    background: var(--coral-light);
+  }
+  .partner-card:nth-child(1) h4 .card-icon {
+    background: var(--teal-light);
+  }
+  .partner-card:nth-child(2) h4 .card-icon {
+    background: var(--amber-light);
+  }
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin-top: 4px;
+  }
+  .metric-pill {
+    background: var(--bg-warm);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 14px 16px;
+    text-align: center;
+  }
+  .metric-pill .metric-value {
+    font-family: var(--font-serif);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--teal);
+    line-height: 1.2;
+  }
+  .metric-pill .metric-label {
+    font-size: 12px;
+    color: var(--gray-500);
+    margin-top: 4px;
+    font-weight: 500;
+  }
+  @media (max-width: 768px) {
+    .partner-cards { grid-template-columns: 1fr; }
+    .metrics-grid { grid-template-columns: repeat(2, 1fr); }
+    .partner-context-inner { padding: 56px 20px; }
+  }
+  @media (max-width: 480px) {
+    .metrics-grid { grid-template-columns: 1fr 1fr; }
+  }
+
   /* ── Responsive ── */
   @media (max-width: 768px) {
     .numbers-grid { grid-template-columns: repeat(2, 1fr); gap: 24px; }
@@ -563,6 +664,58 @@
   <h1>Italia Online &mdash; 130,000 SMBs Across Italy</h1>
   <p>End-to-end Stripe Connect billing integration, powering automated payment flows for Italy&rsquo;s largest SMB digital services network.</p>
 </header>
+
+<!-- ════════════════ PARTNER CONTEXT ════════════════ -->
+<section class="partner-context">
+  <div class="partner-context-inner">
+    <div class="section-label reveal">Partner Context</div>
+    <h2 class="section-title reveal">Who Is Italia Online</h2>
+    <p class="section-subtitle reveal">Understanding the partner, their business data, and why this integration was built.</p>
+
+    <div class="partner-cards">
+      <!-- Card 1: The Partner -->
+      <div class="partner-card reveal">
+        <h4><span class="card-icon">&#127470;&#127481;</span> The Partner</h4>
+        <p>Italia Online (IOL) is Italy&rsquo;s largest digital services provider for small and medium businesses. They operate the Italian digital advertising and web presence market, providing websites, SEO, and online advertising to local businesses across the country.</p>
+        <p style="margin-top: 12px;">130,000 paying SMB customers managed through a network of 700+ field sales agents. 40,000 websites managed across Italy.</p>
+      </div>
+
+      <!-- Card 2: Business Data -->
+      <div class="partner-card reveal">
+        <h4><span class="card-icon">&#128202;</span> Business Data</h4>
+        <div class="metrics-grid">
+          <div class="metric-pill">
+            <div class="metric-value">130K</div>
+            <div class="metric-label">Paying SMBs</div>
+          </div>
+          <div class="metric-pill">
+            <div class="metric-value">700+</div>
+            <div class="metric-label">Sales Agents</div>
+          </div>
+          <div class="metric-pill">
+            <div class="metric-value">40K</div>
+            <div class="metric-label">Websites Managed</div>
+          </div>
+          <div class="metric-pill">
+            <div class="metric-value">EUR</div>
+            <div class="metric-label">European Market</div>
+          </div>
+          <div class="metric-pill" style="grid-column: span 2;">
+            <div class="metric-value">GDPR</div>
+            <div class="metric-label">Compliance Required</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Why This Integration Exists -->
+      <div class="partner-card full-width reveal">
+        <h4><span class="card-icon">&#128161;</span> Why This Integration Exists</h4>
+        <p>Italia Online needed to migrate their 130,000 SMB billing infrastructure to Stripe Connect (Standard) for automated payment processing. Their 700+ sales agents required a dashboard to manage their SMB portfolios, and product activation needed to happen automatically post-payment instead of through manual provisioning.</p>
+        <p style="margin-top: 12px;">I designed the Stripe Connect integration architecture, managed the billing migration with zero-downtime cutover, and planned the Bring Your Own Payment Gateway automation as the next phase. Cross-border coordination between North American engineering and Italian business stakeholders, with GDPR data residency requirements adding complexity at every step.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- ════════════════ KEY NUMBERS ════════════════ -->
 <section class="numbers-band">
