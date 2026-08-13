@@ -655,66 +655,113 @@
     .pm-grid      { grid-template-columns: 1fr; }
   }
 
-  /* ── Demo Walkthrough ── */
-  .demo-grid {
+  /* ── Conversation Demo ── */
+  .chat-demo-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 24px;
+    gap: 28px;
   }
-  .demo-step {
+  .chat-scene {
     background: #fff;
     border: 1px solid var(--gray-200);
     border-radius: var(--radius);
-    overflow: hidden;
     box-shadow: var(--shadow-sm);
-    transition: box-shadow .3s ease, transform .2s ease;
+    overflow: hidden;
+    transition: box-shadow .3s ease;
   }
-  .demo-step:hover {
-    box-shadow: var(--shadow-md);
-    transform: translateY(-2px);
-  }
-  .demo-step.full-width {
-    grid-column: 1 / -1;
-  }
-  .demo-step img {
-    width: 100%;
-    height: auto;
-    display: block;
-    border-bottom: 1px solid var(--gray-200);
-  }
-  .demo-step-body {
-    padding: 20px 24px;
-  }
-  .demo-step-body .step-num {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
+  .chat-scene:hover { box-shadow: var(--shadow-md); }
+  .chat-scene.full-width { grid-column: 1 / -1; }
+  .chat-scene-header {
     background: var(--teal);
     color: #fff;
-    font-size: 13px;
-    font-weight: 700;
-    margin-right: 10px;
-    flex-shrink: 0;
-  }
-  .demo-step-body h4 {
-    font-family: var(--font-serif);
-    font-size: 17px;
-    font-weight: 600;
-    color: var(--gray-900);
-    margin-bottom: 8px;
+    padding: 14px 20px;
     display: flex;
     align-items: center;
+    gap: 10px;
   }
-  .demo-step-body p {
+  .chat-scene-header .scene-num {
+    width: 26px; height: 26px;
+    border-radius: 50%;
+    background: rgba(255,255,255,.25);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 13px; font-weight: 700; flex-shrink: 0;
+  }
+  .chat-scene-header .scene-title {
+    font-family: var(--font-serif);
+    font-size: 16px; font-weight: 600;
+  }
+  .chat-window {
+    padding: 20px;
+    background: var(--gray-50);
+    min-height: 200px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+  .chat-msg {
+    max-width: 85%;
+    padding: 10px 16px;
+    border-radius: 16px;
     font-size: 14px;
-    color: var(--gray-600);
-    line-height: 1.65;
+    line-height: 1.55;
+    position: relative;
+  }
+  .chat-msg.user {
+    align-self: flex-end;
+    background: var(--teal);
+    color: #fff;
+    border-bottom-right-radius: 4px;
+  }
+  .chat-msg.ai {
+    align-self: flex-start;
+    background: #fff;
+    color: var(--gray-800);
+    border: 1px solid var(--gray-200);
+    border-bottom-left-radius: 4px;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+  }
+  .chat-msg.ai .ai-label {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--teal);
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    display: block;
+    margin-bottom: 4px;
+  }
+  .chat-msg.ai ul {
+    margin: 6px 0 2px 16px;
+    padding: 0;
+  }
+  .chat-msg.ai li {
+    padding: 2px 0;
+    font-size: 13px;
+  }
+  .chat-msg.ai .confirm-box {
+    margin-top: 8px;
+    padding: 10px 14px;
+    background: var(--green-bg);
+    border-radius: 8px;
+    border: 1px solid #bbf7d0;
+  }
+  .chat-msg.ai .confirm-box p {
+    font-size: 13px;
+    margin: 2px 0;
+    color: var(--gray-700);
+  }
+  .chat-scene-footer {
+    padding: 12px 20px;
+    border-top: 1px solid var(--gray-200);
+    font-size: 13px;
+    color: var(--gray-500);
+    line-height: 1.55;
+    background: #fff;
+  }
+  .chat-scene-footer strong {
+    color: var(--gray-700);
   }
   @media (max-width: 768px) {
-    .demo-grid { grid-template-columns: 1fr; }
+    .chat-demo-grid { grid-template-columns: 1fr; }
   }
 </style>
 </head>
@@ -902,52 +949,147 @@
 
 <hr class="divider">
 
-<!-- ════════════════ DEMO WALKTHROUGH ════════════════ -->
+<!-- ════════════════ CONVERSATION DEMO ════════════════ -->
 <section class="section">
-  <div class="section-label reveal">Live Demo</div>
-  <h2 class="section-title reveal">Demo Walkthrough</h2>
-  <p class="section-subtitle reveal">End-to-end demo on a test business running on the booking platform sandbox with the AI Chat Receptionist booking appointments in real time.</p>
+  <div class="section-label reveal">How It Works</div>
+  <h2 class="section-title reveal">The Booking Conversation</h2>
+  <p class="section-subtitle reveal">What the customer experiences when they chat or call a business &mdash; the AI handles the entire booking flow in real time.</p>
 
-  <div class="demo-grid">
-    <div class="demo-step reveal">
-      <img src="demo-connection.jpg" alt="Booking platform integration connected in business application" loading="lazy">
-      <div class="demo-step-body">
-        <h4><span class="step-num">1</span> Connect Booking Platform</h4>
-        <p>Operations team opens business application &rarr; Administration &rarr; Integrations &rarr; Booking Platform. Enters the Site ID, selects Europe/Rome timezone. System validates credentials with a test API call. Status: Connected. Setup time: under 10 minutes.</p>
+  <div class="chat-demo-grid">
+
+    <!-- Scene 1: List Services -->
+    <div class="chat-scene reveal">
+      <div class="chat-scene-header">
+        <span class="scene-num">1</span>
+        <span class="scene-title">Customer Asks About Services</span>
+      </div>
+      <div class="chat-window">
+        <div class="chat-msg user">What services do you offer?</div>
+        <div class="chat-msg ai">
+          <span class="ai-label">AI Receptionist</span>
+          We offer the following services:
+          <ul>
+            <li>Men&rsquo;s Haircut &mdash; 30 min, $25</li>
+            <li>Women&rsquo;s Cut &amp; Blow-Dry &mdash; 60 min, $55</li>
+            <li>Kids&rsquo; Haircut &mdash; 20 min, free</li>
+            <li>Fringe / Bang Trim &mdash; 15 min, free</li>
+          </ul>
+          Would you like to book any of these?
+        </div>
+      </div>
+      <div class="chat-scene-footer">
+        <strong>What happened:</strong> AI called the <em>list_appointment_types</em> MCP tool &rarr; booking platform API returned all services with duration and pricing.
       </div>
     </div>
 
-    <div class="demo-step reveal">
-      <img src="demo-services.jpg" alt="AI Chat Receptionist listing booking services with pricing" loading="lazy">
-      <div class="demo-step-body">
-        <h4><span class="step-num">2</span> AI Lists Services</h4>
-        <p>Customer asks &ldquo;what services do you offer?&rdquo; &mdash; the AI calls the booking API and returns all bookable services with duration and pricing: Men&rsquo;s Haircut ($25, 30 min), Women&rsquo;s Cut &amp; Blow-Dry ($55, 60 min), Kids&rsquo; Haircut (free, 20 min), Fringe/Bang Trim (free, 15 min).</p>
+    <!-- Scene 2: Check Availability -->
+    <div class="chat-scene reveal">
+      <div class="chat-scene-header">
+        <span class="scene-num">2</span>
+        <span class="scene-title">AI Checks Real-Time Availability</span>
+      </div>
+      <div class="chat-window">
+        <div class="chat-msg user">What slots are available for a kids haircut?</div>
+        <div class="chat-msg ai">
+          <span class="ai-label">AI Receptionist</span>
+          Here are the upcoming available slots:
+          <ul>
+            <li><strong>Today (Wed):</strong> 11:20 AM, 11:40 AM, 12:00 PM, 12:20 PM</li>
+            <li><strong>Tomorrow (Thu):</strong> 9:00 AM and throughout the day in 20-min intervals</li>
+            <li>More slots on Aug 3, 4, and 5</li>
+          </ul>
+          Would you like to book a specific time?
+        </div>
+      </div>
+      <div class="chat-scene-footer">
+        <strong>What happened:</strong> AI called the <em>check_availability</em> MCP tool &rarr; platform returned real-time free slots for the requested service, timezone-aware.
       </div>
     </div>
 
-    <div class="demo-step reveal">
-      <img src="demo-availability.jpg" alt="AI showing real-time available appointment slots" loading="lazy">
-      <div class="demo-step-body">
-        <h4><span class="step-num">3</span> AI Checks Availability</h4>
-        <p>Customer asks &ldquo;what slots are available for kids haircut?&rdquo; &mdash; the AI queries the scheduling API and returns real-time availability: &ldquo;Today 11:20 AM, 11:40 AM, 12:00 PM&hellip; Tomorrow 9:00 AM and throughout the day in 20-minute intervals.&rdquo;</p>
+    <!-- Scene 3: Collect Details -->
+    <div class="chat-scene reveal">
+      <div class="chat-scene-header">
+        <span class="scene-num">3</span>
+        <span class="scene-title">AI Collects Booking Details</span>
+      </div>
+      <div class="chat-window">
+        <div class="chat-msg user">Book at 9 AM tomorrow</div>
+        <div class="chat-msg ai">
+          <span class="ai-label">AI Receptionist</span>
+          To book your Kids&rsquo; Haircut at 9:00 AM on Thursday, I&rsquo;ll need a few details. Could you provide your full name?
+        </div>
+        <div class="chat-msg user">Maria</div>
+        <div class="chat-msg ai">
+          <span class="ai-label">AI Receptionist</span>
+          Thank you, Maria. May I have your email address to send the confirmation?
+        </div>
+        <div class="chat-msg user">maria@email.com</div>
+      </div>
+      <div class="chat-scene-footer">
+        <strong>What happened:</strong> AI progressively collected name, email, and service preference &mdash; same fields whether on voice call or web chat.
       </div>
     </div>
 
-    <div class="demo-step reveal">
-      <img src="demo-booking.jpg" alt="AI booking confirmation with service, date, time, and customer name" loading="lazy">
-      <div class="demo-step-body">
-        <h4><span class="step-num">4</span> AI Books the Appointment</h4>
-        <p>Customer says &ldquo;book at 9AM&rdquo; &mdash; the AI collects name and email, then creates the booking in the business calendar. Confirmation: &ldquo;Your Kids&rsquo; Haircut has been booked for Friday, August 14 at 9:00 AM.&rdquo; Service, date, time, name, and email all confirmed.</p>
+    <!-- Scene 4: Booking Confirmed -->
+    <div class="chat-scene reveal">
+      <div class="chat-scene-header" style="background: var(--green);">
+        <span class="scene-num">4</span>
+        <span class="scene-title">Booking Confirmed Instantly</span>
+      </div>
+      <div class="chat-window">
+        <div class="chat-msg ai">
+          <span class="ai-label">AI Receptionist</span>
+          Your appointment has been booked! Here are your details:
+          <div class="confirm-box">
+            <p><strong>Service:</strong> Kids&rsquo; Haircut</p>
+            <p><strong>Date:</strong> Thursday, August 14</p>
+            <p><strong>Time:</strong> 9:00 AM</p>
+            <p><strong>Name:</strong> Maria</p>
+            <p><strong>Email:</strong> maria@email.com</p>
+          </div>
+          Thank you for booking! We look forward to seeing you.
+        </div>
+      </div>
+      <div class="chat-scene-footer">
+        <strong>What happened:</strong> AI called the <em>create_appointment</em> MCP tool &rarr; booking created in the business calendar instantly. Idempotency key prevents double-booking if retried.
       </div>
     </div>
 
-    <div class="demo-step full-width reveal">
-      <img src="demo-conversations.jpg" alt="Full booking conversation visible in partner dashboard inbox" loading="lazy">
-      <div class="demo-step-body">
-        <h4><span class="step-num">5</span> Full Conversation in Partner Dashboard</h4>
-        <p>The complete booking conversation appears in the partner dashboard &mdash; every message, every detail, fully attributed to the Chat Receptionist. The business owner and operations team can see exactly what the AI said, what the customer requested, and that the booking was confirmed. Voice call history visible in the same inbox alongside chat conversations.</p>
+    <!-- Scene 5: Full picture -->
+    <div class="chat-scene full-width reveal">
+      <div class="chat-scene-header" style="background: var(--gray-800);">
+        <span class="scene-num">5</span>
+        <span class="scene-title">What the Partner and Business Owner See</span>
+      </div>
+      <div class="chat-window" style="flex-direction: row; gap: 20px; flex-wrap: wrap;">
+        <div style="flex: 1; min-width: 240px;">
+          <div style="font-size: 13px; font-weight: 700; color: var(--teal); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px;">Partner Dashboard</div>
+          <div class="chat-msg ai" style="max-width: 100%; margin-bottom: 8px;">
+            <span class="ai-label">Conversation Thread</span>
+            Full chat transcript visible &mdash; every message from the customer and the AI, timestamped and attributed. Business owner sees exactly what was said and that the booking was confirmed.
+          </div>
+          <div class="chat-msg ai" style="max-width: 100%;">
+            <span class="ai-label">Voice Call History</span>
+            Phone calls appear in the same inbox alongside chat conversations. Single view for all customer interactions across channels.
+          </div>
+        </div>
+        <div style="flex: 1; min-width: 240px;">
+          <div style="font-size: 13px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px;">Business Calendar</div>
+          <div class="chat-msg ai" style="max-width: 100%; margin-bottom: 8px;">
+            <span class="ai-label">Appointment Created</span>
+            The booking appears immediately in the website platform&rsquo;s calendar with all customer details. Staff see it in their schedule. No manual entry needed.
+          </div>
+          <div class="chat-msg ai" style="max-width: 100%;">
+            <span class="ai-label">AI Attribution</span>
+            Every booking is tagged as AI-created for tracking. The partner can measure how many appointments the AI Receptionist books versus manual bookings.
+          </div>
+        </div>
+      </div>
+      <div class="chat-scene-footer">
+        <strong>Three stakeholders, one flow:</strong> The <em>customer</em> gets instant confirmation. The <em>business owner</em> sees the appointment in their calendar. The <em>partner</em> tracks AI performance across all their businesses. This is the PM/Partner/SMB collaboration pattern I designed.
       </div>
     </div>
+
   </div>
 </section>
 
