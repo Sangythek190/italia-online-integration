@@ -1084,6 +1084,123 @@
     .mock-hero { padding: 32px 20px; }
     .mock-services { padding: 20px; }
   }
+
+  /* ── Interactive: Chat Widget ── */
+  .chat-widget-window { display: none; }
+  .chat-widget.open .chat-widget-window { display: flex; flex-direction: column; }
+  .chat-widget.open .chat-widget-trigger { display: none; }
+  .chat-widget.open .chat-cta-label { display: none; }
+  .cw-close { font-size: 22px; cursor: pointer; opacity: .7; margin-left: auto; }
+  .cw-close:hover { opacity: 1; }
+  .chat-cta-label {
+    position: absolute; bottom: 66px; right: 0;
+    background: var(--gray-800); color: #fff;
+    font-size: 12px; font-weight: 600;
+    padding: 6px 14px; border-radius: 8px;
+    white-space: nowrap; pointer-events: none;
+    animation: ctaPulse 2s ease-in-out infinite;
+    box-shadow: var(--shadow-md);
+  }
+  @keyframes ctaPulse { 0%,100% { opacity: 1; transform: translateY(0); } 50% { opacity: .7; transform: translateY(-3px); } }
+  .chat-chips {
+    display: flex; gap: 6px; flex-wrap: wrap; padding: 4px 0;
+  }
+  .chat-chip {
+    background: var(--teal); color: #fff;
+    border: none; border-radius: 16px;
+    padding: 7px 14px; font-size: 13px;
+    cursor: pointer; transition: background .2s;
+    font-family: var(--font-sans);
+  }
+  .chat-chip:hover { background: #0d9488; }
+  .typing-indicator {
+    display: flex; gap: 4px; padding: 10px 16px;
+    align-self: flex-start;
+  }
+  .typing-indicator span {
+    width: 8px; height: 8px; border-radius: 50%;
+    background: var(--gray-300);
+    animation: typingBounce .6s ease-in-out infinite;
+  }
+  .typing-indicator span:nth-child(2) { animation-delay: .15s; }
+  .typing-indicator span:nth-child(3) { animation-delay: .3s; }
+  @keyframes typingBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+  /* ── Interactive: PM Workflow ── */
+  .workflow-step { cursor: pointer; transition: all .3s ease; }
+  .workflow-step:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+  .workflow-step.active { border-color: var(--teal); border-width: 2px; box-shadow: 0 0 0 3px var(--teal-light); }
+  .workflow-detail {
+    max-height: 0; overflow: hidden;
+    transition: max-height .4s ease, padding .4s ease;
+    background: var(--bg-warm); border-radius: var(--radius);
+    margin-top: 0; font-size: 15px; color: var(--gray-700);
+    line-height: 1.7; border: 1px solid transparent;
+  }
+  .workflow-detail.open {
+    max-height: 200px; padding: 20px 24px;
+    margin-top: 20px; border-color: var(--gray-200);
+  }
+
+  /* ── Interactive: Stakeholder Tabs ── */
+  .sh-tabs {
+    display: flex; gap: 0; margin-bottom: 24px;
+    border-bottom: 2px solid var(--gray-200);
+  }
+  .sh-tab {
+    flex: 1; padding: 14px 20px;
+    background: none; border: none; border-bottom: 3px solid transparent;
+    font-family: var(--font-serif); font-size: 16px; font-weight: 600;
+    color: var(--gray-500); cursor: pointer;
+    transition: all .3s ease; margin-bottom: -2px;
+  }
+  .sh-tab:hover { color: var(--gray-800); }
+  .sh-tab.active { color: var(--teal); border-bottom-color: var(--teal); }
+  .sh-panel { display: none; }
+  .sh-panel.active { display: block; animation: fadeIn .4s ease; }
+  @keyframes fadeIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  .sh-panel-inner {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 28px;
+    background: #fff; border-radius: var(--radius);
+    border: 1px solid var(--gray-200); overflow: hidden;
+    box-shadow: var(--shadow-sm);
+  }
+  .sh-panel-inner.teal-accent { border-left: 4px solid var(--teal); }
+  .sh-panel-inner.amber-accent { border-left: 4px solid var(--amber); }
+  .sh-panel-inner.green-accent { border-left: 4px solid var(--green); }
+  .sh-panel-visual { padding: 28px; background: var(--gray-50); }
+  .sh-panel-text { padding: 28px; display: flex; flex-direction: column; justify-content: center; }
+  .sh-panel-text h4 { font-family: var(--font-serif); font-size: 20px; margin-bottom: 12px; }
+  .sh-panel-text p { font-size: 15px; color: var(--gray-600); line-height: 1.7; }
+
+  /* Mini chat */
+  .mini-chat { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); overflow: hidden; }
+  .mini-chat-header { background: var(--teal); color: #fff; padding: 10px 16px; font-size: 14px; font-weight: 600; }
+
+  /* Mini calendar */
+  .mini-calendar { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); overflow: hidden; }
+  .mini-cal-header { background: var(--amber); color: #fff; padding: 10px 16px; font-size: 14px; font-weight: 600; }
+  .mini-cal-slot { padding: 8px 16px; font-size: 13px; border-bottom: 1px solid var(--gray-100); color: var(--gray-500); }
+  .mini-cal-slot.booked { color: var(--gray-800); font-weight: 500; }
+  .cal-time { color: var(--gray-500); font-weight: 400; margin-right: 8px; }
+  .cal-badge { font-size: 10px; font-weight: 700; padding: 2px 6px; border-radius: 4px; margin-left: 6px; }
+  .ai-badge { background: var(--teal-light); color: var(--teal); }
+
+  /* Mini dashboard */
+  .mini-dashboard { background: #fff; border-radius: var(--radius); border: 1px solid var(--gray-200); overflow: hidden; }
+  .mini-dash-title { background: var(--green); color: #fff; padding: 10px 16px; font-size: 14px; font-weight: 600; }
+  .mini-dash-metrics { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--gray-100); }
+  .mini-metric { background: #fff; padding: 12px; text-align: center; }
+  .mini-metric-val { display: block; font-family: var(--font-serif); font-size: 22px; font-weight: 700; color: var(--green); }
+  .mini-metric-lbl { font-size: 11px; color: var(--gray-500); }
+  .mini-dash-bar { margin: 12px 16px; background: var(--gray-100); border-radius: 4px; height: 8px; }
+  .mini-bar-fill { background: var(--green); height: 100%; border-radius: 4px; transition: width 1s ease; }
+  .mini-dash-label { padding: 8px 16px 14px; font-size: 12px; color: var(--gray-500); }
+
+  @media (max-width: 768px) {
+    .sh-panel-inner { grid-template-columns: 1fr; }
+    .sh-tab { font-size: 13px; padding: 10px; }
+  }
 </style>
 </head>
 <body>
@@ -1277,45 +1394,47 @@
   <p class="section-subtitle reveal">End-to-end ownership from discovery to production &mdash; what a Product Manager does to ship an AI-to-platform integration.</p>
 
   <div class="workflow-flow reveal">
-    <div class="workflow-step">
+    <div class="workflow-step" onclick="toggleWorkflow(this)" data-detail="Mapped the partner's 40,000 website landscape. Analysed the booking platform's API documentation and sandbox environment. Identified an existing AI booking capability as the reference architecture. Scoped 21 tickets across the integration and AI platform teams.">
       <span class="step-icon">&#128269;</span>
       <span class="step-title">Discovery</span>
       <span class="step-desc">Mapped 40K websites, analysed APIs, identified reference pattern</span>
     </div>
     <span class="workflow-arrow">&#8594;</span>
-    <div class="workflow-step">
+    <div class="workflow-step" onclick="toggleWorkflow(this)" data-detail="Wrote the full mission brief: objective with evidence (partner escalation, contractual obligation), user goal, component table with RACI, 11 edge cases covering unavailable systems and race conditions, 5 outcome targets with failure signals, phasing strategy (Part 1: core booking, Part 2: cancel/reschedule/payments), and a verification checklist with explicit 'done means' criteria.">
       <span class="step-icon">&#128196;</span>
       <span class="step-title">Mission Brief</span>
       <span class="step-desc">11 edge cases, 5 outcomes, RACI, phasing strategy</span>
     </div>
     <span class="workflow-arrow">&#8594;</span>
-    <div class="workflow-step">
+    <div class="workflow-step" onclick="toggleWorkflow(this)" data-detail="Scored the mission brief for review with 6 named supporters across the integration team, AI platform team, and partner account management. Collected approval from the director and group product manager. 'Silence is not approval' — I chased every supporter until they signed off or raised concerns.">
       <span class="step-icon">&#129309;</span>
       <span class="step-title">Partner Approval</span>
       <span class="step-desc">6 supporters reviewed, partner signed off</span>
     </div>
     <span class="workflow-arrow">&#8594;</span>
-    <div class="workflow-step">
+    <div class="workflow-step" onclick="toggleWorkflow(this)" data-detail="Defined 4 MCP booking tools (list services, check availability, create appointment, look up booking). Wrote API specifications and tool call contracts so engineering could build without ambiguity. Managed the mid-build API migration when the booking platform replaced their API with a new AI-agent-specific Proxy API. Introduced idempotency keys to prevent double-booking on timeout retries.">
       <span class="step-icon">&#9881;</span>
       <span class="step-title">Engineering</span>
       <span class="step-desc">Defined 4 MCP tools, cloud function specs, API contracts</span>
     </div>
     <span class="workflow-arrow">&#8594;</span>
-    <div class="workflow-step">
+    <div class="workflow-step" onclick="toggleWorkflow(this)" data-detail="Registered the 'Manage bookings' capability in the AI Capabilities editor following the reference pattern. Wrote tool call specifications for all 4 booking operations. Ensured the capability works across both Voice AI employees (phone calls) and Chat AI employees (web chat). Defined scope boundaries and credential storage approach.">
       <span class="step-icon">&#129302;</span>
       <span class="step-title">AI Configuration</span>
       <span class="step-desc">Registered capability, wrote tool specs for Voice + Chat</span>
     </div>
     <span class="workflow-arrow">&#8594;</span>
-    <div class="workflow-step">
+    <div class="workflow-step" onclick="toggleWorkflow(this)" data-detail="Operations team connects each business by entering the site credentials. System validates with a test API call. European timezone configured. Status changes to Connected. The full setup takes under 10 minutes per business — scalable to 40,000 websites. I wrote the operations runbook and tested the flow end-to-end in the sandbox.">
       <span class="step-icon">&#128640;</span>
       <span class="step-title">Operations Setup</span>
       <span class="step-desc">Connect each business in under 10 minutes</span>
     </div>
   </div>
 
+  <div class="workflow-detail" id="workflowDetail"></div>
+
   <div class="workflow-note reveal">
-    I defined the booking tools (list services, check availability, create appointment, look up booking), wrote the API specifications for engineering, managed the mid-build API migration when the platform changed their API, and coordinated delivery across the integration team, AI platform team, and external contacts across three time zones.
+    <em>Click any step above to see what I did in detail.</em>
   </div>
 </section>
 
@@ -1345,7 +1464,7 @@
           <a href="#">TREATMENTS</a>
           <a href="#">ABOUT</a>
           <a href="#">CONTACT</a>
-          <span class="mock-cta">BOOK AN APPOINTMENT</span>
+          <span class="mock-cta" onclick="openChat()" style="cursor:pointer;">BOOK AN APPOINTMENT</span>
         </nav>
       </div>
       <!-- Hero -->
@@ -1368,43 +1487,25 @@
           <div class="svc-price">Free</div>
         </div>
       </div>
-      <!-- Chat widget -->
-      <div class="chat-widget">
-        <div class="chat-widget-window">
+      <!-- Interactive Chat Widget -->
+      <div class="chat-widget" id="chatWidget">
+        <div class="chat-widget-window" id="chatWindow">
           <div class="chat-widget-header">
             <div>
               <div class="cw-title">AI Receptionist</div>
               <div class="cw-status"><span class="cw-status-dot"></span> Online</div>
             </div>
+            <span class="cw-close" onclick="closeChat()">&times;</span>
           </div>
-          <div class="chat-widget-body">
-            <div class="chat-msg sm user">I&rsquo;d like a kids haircut</div>
-            <div class="chat-msg sm ai">
-              <span class="ai-label">AI Receptionist</span>
-              Available tomorrow at 9:00 AM, 9:20 AM, 9:40 AM. Want to book?
-            </div>
-            <div class="chat-msg sm user">9 AM please</div>
-            <div class="chat-msg sm ai">
-              <span class="ai-label">AI Receptionist</span>
-              What&rsquo;s your name?
-            </div>
-            <div class="chat-msg sm user">Maria</div>
-            <div class="chat-msg sm ai">
-              <span class="ai-label">AI Receptionist</span>
-              <div class="confirm-box">
-                <p><strong>Service:</strong> Kids&rsquo; Haircut</p>
-                <p><strong>Date:</strong> Thu Aug 14</p>
-                <p><strong>Time:</strong> 9:00 AM</p>
-                <p><strong>Name:</strong> Maria</p>
-              </div>
-            </div>
+          <div class="chat-widget-body" id="chatBody">
+            <!-- Messages injected by JS -->
           </div>
-          <div class="chat-widget-input">
-            <span>Type here...</span>
-            <button class="send-btn">Send</button>
+          <div class="chat-widget-input" id="chatInput">
+            <div id="chatChips" class="chat-chips"></div>
           </div>
         </div>
-        <div class="chat-widget-trigger">&#128172;</div>
+        <div class="chat-widget-trigger" id="chatTrigger" onclick="openChat()">&#128172;</div>
+        <div class="chat-cta-label" id="chatCtaLabel">Click to try the booking flow &rarr;</div>
       </div>
     </div>
   </div>
@@ -1418,54 +1519,81 @@
   <h2 class="section-title reveal">Three Stakeholders, One Booking</h2>
   <p class="section-subtitle reveal">The same booking flows to three different people &mdash; each sees what they need.</p>
 
-  <div class="stakeholder-grid">
-    <!-- Customer -->
-    <div class="stakeholder-card teal-accent reveal">
-      <div class="stakeholder-card-header">
-        <span class="sh-icon">&#128113;</span>
-        <h4>Customer</h4>
-      </div>
-      <div class="stakeholder-card-body">
-        <div class="sh-line"><strong>Your Kids&rsquo; Haircut is confirmed!</strong></div>
-        <div class="sh-line">Thu Aug 14, 9:00 AM</div>
-        <div class="sh-line">Confirmation sent to your email</div>
-      </div>
-      <div class="stakeholder-card-footer">
-        Gets instant confirmation on the website chat or phone call. No callback needed.
+  <div class="sh-tabs reveal">
+    <button class="sh-tab active" onclick="switchTab('customer', this)" data-color="var(--teal)">&#128113; Customer</button>
+    <button class="sh-tab" onclick="switchTab('owner', this)" data-color="var(--amber)">&#128197; Business Owner</button>
+    <button class="sh-tab" onclick="switchTab('partner', this)" data-color="var(--green)">&#128200; Partner</button>
+  </div>
+
+  <div class="sh-tab-content reveal">
+    <!-- Customer View -->
+    <div class="sh-panel active" id="tab-customer">
+      <div class="sh-panel-inner teal-accent">
+        <div class="sh-panel-visual">
+          <div class="mini-chat">
+            <div class="mini-chat-header">AI Receptionist</div>
+            <div class="chat-msg sm ai" style="max-width:100%;">
+              <div class="confirm-box">
+                <p><strong>Your Kids&rsquo; Haircut is confirmed!</strong></p>
+                <p>Thu Aug 14 &mdash; 9:00 AM</p>
+                <p>Name: Maria</p>
+                <p>Confirmation sent to maria@email.com</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="sh-panel-text">
+          <h4>What the Customer Sees</h4>
+          <p>Instant confirmation right in the chat window &mdash; on the website or over the phone. No &ldquo;we&rsquo;ll call you back.&rdquo; No waiting. The booking is done before they close the tab.</p>
+          <p style="margin-top:12px; color: var(--gray-500); font-size: 13px;">Works identically on web chat and voice call &mdash; same AI, same tools, same outcome.</p>
+        </div>
       </div>
     </div>
 
-    <!-- Business Owner -->
-    <div class="stakeholder-card amber-accent reveal">
-      <div class="stakeholder-card-header">
-        <span class="sh-icon">&#128197;</span>
-        <h4>Business Owner</h4>
-      </div>
-      <div class="stakeholder-card-body">
-        <div class="sh-line"><strong>Thu, August 14</strong></div>
-        <div class="sh-line">9:00 AM &mdash; Kids&rsquo; Haircut &mdash; Maria</div>
-        <div class="sh-line">9:20 AM &mdash; Men&rsquo;s Haircut &mdash; Luca</div>
-        <div class="sh-line">10:00 AM &mdash; Available</div>
-      </div>
-      <div class="stakeholder-card-footer">
-        Sees the appointment in their calendar immediately. Staff schedule updated. No manual entry.
+    <!-- Business Owner View -->
+    <div class="sh-panel" id="tab-owner">
+      <div class="sh-panel-inner amber-accent">
+        <div class="sh-panel-visual">
+          <div class="mini-calendar">
+            <div class="mini-cal-header">Thu, August 14</div>
+            <div class="mini-cal-slot booked"><span class="cal-time">9:00 AM</span> Kids&rsquo; Haircut &mdash; Maria <span class="cal-badge ai-badge">AI</span></div>
+            <div class="mini-cal-slot booked"><span class="cal-time">9:20 AM</span> Men&rsquo;s Haircut &mdash; Luca</div>
+            <div class="mini-cal-slot"><span class="cal-time">9:40 AM</span> Available</div>
+            <div class="mini-cal-slot booked"><span class="cal-time">10:00 AM</span> Women&rsquo;s Cut &mdash; Sofia</div>
+            <div class="mini-cal-slot"><span class="cal-time">10:20 AM</span> Available</div>
+          </div>
+        </div>
+        <div class="sh-panel-text">
+          <h4>What the Business Owner Sees</h4>
+          <p>The appointment appears in their calendar instantly &mdash; no phone call, no manual entry. Staff schedule updates automatically. The <span class="cal-badge ai-badge" style="font-size:11px;">AI</span> badge shows which bookings came through the AI Receptionist.</p>
+          <p style="margin-top:12px; color: var(--gray-500); font-size: 13px;">Calendar lives in the website platform where the business already manages their site.</p>
+        </div>
       </div>
     </div>
 
-    <!-- Partner -->
-    <div class="stakeholder-card green-accent reveal">
-      <div class="stakeholder-card-header">
-        <span class="sh-icon">&#128200;</span>
-        <h4>Partner</h4>
-      </div>
-      <div class="stakeholder-card-body">
-        <div class="sh-line">AI Bookings This Week: <strong>47</strong></div>
-        <div class="sh-line">Booking Success Rate: <strong>89%</strong></div>
-        <div class="sh-line">Active Businesses: <strong>124 / 40,000</strong></div>
-        <div class="sh-line">Voice + Chat Attribution: <strong>tracked</strong></div>
-      </div>
-      <div class="stakeholder-card-footer">
-        Monitors AI performance across all their businesses. Measures ROI of the integration.
+    <!-- Partner View -->
+    <div class="sh-panel" id="tab-partner">
+      <div class="sh-panel-inner green-accent">
+        <div class="sh-panel-visual">
+          <div class="mini-dashboard">
+            <div class="mini-dash-title">AI Booking Performance</div>
+            <div class="mini-dash-metrics">
+              <div class="mini-metric"><span class="mini-metric-val">47</span><span class="mini-metric-lbl">Bookings This Week</span></div>
+              <div class="mini-metric"><span class="mini-metric-val">89%</span><span class="mini-metric-lbl">Success Rate</span></div>
+              <div class="mini-metric"><span class="mini-metric-val">124</span><span class="mini-metric-lbl">Active Businesses</span></div>
+              <div class="mini-metric"><span class="mini-metric-val">40K</span><span class="mini-metric-lbl">Addressable</span></div>
+            </div>
+            <div class="mini-dash-bar">
+              <div class="mini-bar-fill" style="width: 89%;"></div>
+            </div>
+            <div class="mini-dash-label">Voice + Chat attribution &mdash; every booking tracked</div>
+          </div>
+        </div>
+        <div class="sh-panel-text">
+          <h4>What the Partner Sees</h4>
+          <p>A dashboard showing AI performance across all their businesses. How many bookings, success rate, which businesses are active. They measure whether the AI Receptionist is delivering ROI &mdash; the exact question the PM needs to answer.</p>
+          <p style="margin-top:12px; color: var(--gray-500); font-size: 13px;">This is the data that feeds into the retention framework the PM designed.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -1692,11 +1820,9 @@
   // ── Scroll Reveal via Intersection Observer ──
   document.addEventListener('DOMContentLoaded', () => {
     const reveals = document.querySelectorAll('.reveal');
-
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry, i) => {
+      entries.forEach((entry) => {
         if (entry.isIntersecting) {
-          // Stagger animations slightly for items that appear together
           const delay = Array.from(entry.target.parentElement.children)
             .filter(c => c.classList.contains('reveal'))
             .indexOf(entry.target);
@@ -1705,17 +1831,143 @@
           observer.unobserve(entry.target);
         }
       });
-    }, {
-      threshold: 0.12,
-      rootMargin: '0px 0px -40px 0px'
-    });
-
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
     reveals.forEach(el => observer.observe(el));
   });
 
   // ── Expandable Detail Cards ──
-  function toggleCard(card) {
-    card.classList.toggle('open');
+  function toggleCard(card) { card.classList.toggle('open'); }
+
+  // ═══════════════════════════════════════════
+  // INTERACTIVE CHAT WIDGET
+  // ═══════════════════════════════════════════
+  const chatConversation = [
+    { type: 'ai', text: 'Hi! I can help you book an appointment. What service are you interested in?' },
+    { type: 'chips', options: ['Kids\' Haircut', 'Men\'s Haircut', 'Women\'s Cut'] },
+    { type: 'user', text: 'Kids\' Haircut' },
+    { type: 'ai', text: 'Great choice! Let me check available times for a Kids\' Haircut...' },
+    { type: 'ai', html: '<span class="ai-label">AI Receptionist</span>Available slots:<ul><li><strong>Today:</strong> 11:20 AM, 11:40 AM, 12:00 PM</li><li><strong>Tomorrow:</strong> 9:00 AM, 9:20 AM, 9:40 AM</li></ul>When would you like to come?' },
+    { type: 'chips', options: ['9:00 AM tomorrow', '11:20 AM today', 'Show more'] },
+    { type: 'user', text: '9:00 AM tomorrow' },
+    { type: 'ai', text: 'I\'ll book that for you. What\'s your name?' },
+    { type: 'chips', options: ['Maria', 'Type my name...'] },
+    { type: 'user', text: 'Maria' },
+    { type: 'ai', html: '<span class="ai-label">AI Receptionist</span><div class="confirm-box"><p><strong>Booked!</strong></p><p>Service: Kids\' Haircut</p><p>Date: Thu Aug 14</p><p>Time: 9:00 AM</p><p>Name: Maria</p></div>See you tomorrow!' },
+    { type: 'end' }
+  ];
+
+  let chatStep = 0;
+
+  function openChat() {
+    const widget = document.getElementById('chatWidget');
+    widget.classList.add('open');
+    chatStep = 0;
+    document.getElementById('chatBody').innerHTML = '';
+    document.getElementById('chatChips').innerHTML = '';
+    setTimeout(() => advanceChat(), 600);
+  }
+
+  function closeChat() {
+    document.getElementById('chatWidget').classList.remove('open');
+    chatStep = 0;
+  }
+
+  function advanceChat() {
+    if (chatStep >= chatConversation.length) return;
+    const step = chatConversation[chatStep];
+    const body = document.getElementById('chatBody');
+    const chips = document.getElementById('chatChips');
+
+    if (step.type === 'ai') {
+      // Show typing indicator
+      const typing = document.createElement('div');
+      typing.className = 'typing-indicator';
+      typing.innerHTML = '<span></span><span></span><span></span>';
+      body.appendChild(typing);
+      body.scrollTop = body.scrollHeight;
+
+      setTimeout(() => {
+        typing.remove();
+        const msg = document.createElement('div');
+        msg.className = 'chat-msg sm ai';
+        msg.innerHTML = step.html || ('<span class="ai-label">AI Receptionist</span>' + step.text);
+        msg.style.opacity = '0';
+        msg.style.transform = 'translateY(8px)';
+        body.appendChild(msg);
+        body.scrollTop = body.scrollHeight;
+        requestAnimationFrame(() => {
+          msg.style.transition = 'opacity .3s, transform .3s';
+          msg.style.opacity = '1';
+          msg.style.transform = 'translateY(0)';
+        });
+        chatStep++;
+        setTimeout(() => advanceChat(), 400);
+      }, 1200);
+
+    } else if (step.type === 'user') {
+      const msg = document.createElement('div');
+      msg.className = 'chat-msg sm user';
+      msg.textContent = step.text;
+      msg.style.opacity = '0';
+      msg.style.transform = 'translateY(8px)';
+      body.appendChild(msg);
+      body.scrollTop = body.scrollHeight;
+      requestAnimationFrame(() => {
+        msg.style.transition = 'opacity .3s, transform .3s';
+        msg.style.opacity = '1';
+        msg.style.transform = 'translateY(0)';
+      });
+      chips.innerHTML = '';
+      chatStep++;
+      setTimeout(() => advanceChat(), 600);
+
+    } else if (step.type === 'chips') {
+      chips.innerHTML = '';
+      step.options.forEach(opt => {
+        const btn = document.createElement('button');
+        btn.className = 'chat-chip';
+        btn.textContent = opt;
+        btn.onclick = () => {
+          chatConversation[chatStep + 1].text = opt;
+          chatStep++;
+          advanceChat();
+        };
+        chips.appendChild(btn);
+      });
+
+    } else if (step.type === 'end') {
+      chips.innerHTML = '<button class="chat-chip" onclick="openChat()">Restart demo</button>';
+    }
+  }
+
+  // ═══════════════════════════════════════════
+  // PM WORKFLOW STEP EXPANSION
+  // ═══════════════════════════════════════════
+  function toggleWorkflow(el) {
+    const detail = document.getElementById('workflowDetail');
+    const steps = document.querySelectorAll('.workflow-step');
+
+    if (el.classList.contains('active')) {
+      el.classList.remove('active');
+      detail.classList.remove('open');
+      detail.textContent = '';
+      return;
+    }
+
+    steps.forEach(s => s.classList.remove('active'));
+    el.classList.add('active');
+    detail.textContent = el.getAttribute('data-detail');
+    detail.classList.add('open');
+  }
+
+  // ═══════════════════════════════════════════
+  // STAKEHOLDER TABS
+  // ═══════════════════════════════════════════
+  function switchTab(tabId, btn) {
+    document.querySelectorAll('.sh-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.sh-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+    btn.classList.add('active');
   }
 </script>
 </body>
