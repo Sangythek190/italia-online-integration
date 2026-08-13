@@ -655,49 +655,282 @@
     .pm-grid      { grid-template-columns: 1fr; }
   }
 
-  /* ── Conversation Demo ── */
-  .chat-demo-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 28px;
+  /* ── PM Workflow Steps ── */
+  .workflow-flow {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0;
+    padding: 40px 0;
   }
-  .chat-scene {
+  .workflow-step {
     background: #fff;
     border: 1px solid var(--gray-200);
     border-radius: var(--radius);
+    padding: 20px 22px;
+    text-align: center;
+    min-width: 130px;
+    max-width: 150px;
     box-shadow: var(--shadow-sm);
-    overflow: hidden;
-    transition: box-shadow .3s ease;
+    transition: box-shadow .3s ease, transform .2s ease;
   }
-  .chat-scene:hover { box-shadow: var(--shadow-md); }
-  .chat-scene.full-width { grid-column: 1 / -1; }
-  .chat-scene-header {
+  .workflow-step:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+  .workflow-step .step-icon {
+    font-size: 26px;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .workflow-step .step-title {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--gray-800);
+    margin-bottom: 4px;
+  }
+  .workflow-step .step-desc {
+    font-size: 11px;
+    color: var(--gray-500);
+    line-height: 1.45;
+  }
+  .workflow-arrow {
+    font-size: 22px;
+    color: var(--teal);
+    padding: 0 6px;
+    flex-shrink: 0;
+    margin-top: 30px;
+  }
+  .workflow-note {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    padding: 24px 28px;
+    box-shadow: var(--shadow-sm);
+    margin-top: 32px;
+    font-size: 15px;
+    color: var(--gray-600);
+    line-height: 1.7;
+    border-left: 4px solid var(--teal);
+  }
+
+  /* ── Mock Browser ── */
+  .mock-browser {
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gray-200);
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .browser-chrome {
+    background: var(--gray-800);
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .browser-dots {
+    display: flex;
+    gap: 6px;
+  }
+  .browser-dots span {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+  }
+  .browser-dots span:nth-child(1) { background: #ef4444; }
+  .browser-dots span:nth-child(2) { background: #eab308; }
+  .browser-dots span:nth-child(3) { background: #22c55e; }
+  .browser-bar {
+    flex: 1;
+    background: var(--gray-700);
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 13px;
+    color: var(--gray-300);
+  }
+  .mock-site {
+    background: #fff;
+    position: relative;
+    min-height: 520px;
+  }
+  .mock-site-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 28px;
+    border-bottom: 1px solid var(--gray-200);
+  }
+  .mock-site-logo {
+    font-family: var(--font-serif);
+    font-size: 24px;
+    font-weight: 700;
+    color: var(--gray-900);
+    font-style: italic;
+  }
+  .mock-site-nav {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .mock-site-nav a {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .5px;
+    text-transform: uppercase;
+    color: var(--gray-600);
+    text-decoration: none;
+  }
+  .mock-site-nav .mock-cta {
     background: var(--teal);
     color: #fff;
-    padding: 14px 20px;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .3px;
+  }
+  .mock-hero {
+    background: var(--bg-warm);
+    padding: 48px 28px;
+    text-align: center;
+  }
+  .mock-hero h2 {
+    font-family: var(--font-serif);
+    font-size: 32px;
+    font-weight: 700;
+    color: var(--gray-900);
+    margin-bottom: 8px;
+  }
+  .mock-hero p {
+    font-size: 15px;
+    color: var(--gray-500);
+  }
+  .mock-services {
+    display: flex;
+    gap: 16px;
+    padding: 28px;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .mock-service-card {
+    background: var(--gray-50);
+    border: 1px solid var(--gray-200);
+    border-radius: 8px;
+    padding: 20px 24px;
+    text-align: center;
+    min-width: 140px;
+    flex: 1;
+    max-width: 200px;
+  }
+  .mock-service-card .svc-name {
+    font-weight: 600;
+    font-size: 14px;
+    color: var(--gray-800);
+    margin-bottom: 4px;
+  }
+  .mock-service-card .svc-price {
+    font-family: var(--font-serif);
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--teal);
+  }
+
+  /* ── Chat Widget (inside mock site) ── */
+  .chat-widget {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+    width: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 10px;
+    z-index: 2;
+  }
+  .chat-widget-window {
+    width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--gray-200);
+    overflow: hidden;
+  }
+  .chat-widget-header {
+    background: var(--teal);
+    color: #fff;
+    padding: 14px 18px;
     display: flex;
     align-items: center;
     gap: 10px;
   }
-  .chat-scene-header .scene-num {
-    width: 26px; height: 26px;
+  .chat-widget-header .cw-title {
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .chat-widget-header .cw-status {
+    font-size: 12px;
+    opacity: .85;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  .cw-status-dot {
+    width: 8px;
+    height: 8px;
     border-radius: 50%;
-    background: rgba(255,255,255,.25);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 13px; font-weight: 700; flex-shrink: 0;
+    background: #4ade80;
+    display: inline-block;
   }
-  .chat-scene-header .scene-title {
-    font-family: var(--font-serif);
-    font-size: 16px; font-weight: 600;
-  }
-  .chat-window {
-    padding: 20px;
+  .chat-widget-body {
+    padding: 16px;
     background: var(--gray-50);
-    min-height: 200px;
     display: flex;
     flex-direction: column;
-    gap: 12px;
+    gap: 10px;
+    max-height: 320px;
+    overflow-y: auto;
   }
+  .chat-widget-input {
+    display: flex;
+    align-items: center;
+    border-top: 1px solid var(--gray-200);
+    padding: 10px 14px;
+    background: #fff;
+  }
+  .chat-widget-input span {
+    flex: 1;
+    font-size: 13px;
+    color: var(--gray-300);
+  }
+  .chat-widget-input .send-btn {
+    background: var(--teal);
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .chat-widget-trigger {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: var(--teal);
+    box-shadow: var(--shadow-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-size: 24px;
+    flex-shrink: 0;
+  }
+
+  /* Chat messages inside widget reuse .chat-msg styles */
   .chat-msg {
     max-width: 85%;
     padding: 10px 16px;
@@ -749,19 +982,107 @@
     margin: 2px 0;
     color: var(--gray-700);
   }
-  .chat-scene-footer {
-    padding: 12px 20px;
-    border-top: 1px solid var(--gray-200);
+  .chat-msg.sm {
+    font-size: 13px;
+    padding: 8px 12px;
+    max-width: 90%;
+  }
+
+  /* ── Stakeholder Cards ── */
+  .stakeholder-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  .stakeholder-card {
+    background: #fff;
+    border: 1px solid var(--gray-200);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+    overflow: hidden;
+    transition: box-shadow .3s ease, transform .2s ease;
+  }
+  .stakeholder-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+  }
+  .stakeholder-card-header {
+    padding: 18px 22px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    border-bottom: 1px solid var(--gray-100);
+  }
+  .stakeholder-card-header .sh-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+  .stakeholder-card-header h4 {
+    font-family: var(--font-serif);
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--gray-900);
+  }
+  .stakeholder-card.teal-accent .stakeholder-card-header { border-top: 3px solid var(--teal); }
+  .stakeholder-card.teal-accent .sh-icon { background: var(--teal-light); }
+  .stakeholder-card.amber-accent .stakeholder-card-header { border-top: 3px solid var(--amber); }
+  .stakeholder-card.amber-accent .sh-icon { background: var(--amber-light); }
+  .stakeholder-card.green-accent .stakeholder-card-header { border-top: 3px solid var(--green); }
+  .stakeholder-card.green-accent .sh-icon { background: var(--green-bg); }
+  .stakeholder-card-body {
+    padding: 18px 22px;
+  }
+  .stakeholder-card-body .sh-line {
+    font-size: 14px;
+    color: var(--gray-700);
+    padding: 5px 0;
+    border-bottom: 1px solid var(--gray-100);
+    line-height: 1.5;
+  }
+  .stakeholder-card-body .sh-line:last-child { border-bottom: none; }
+  .stakeholder-card-body .sh-line strong {
+    color: var(--gray-800);
+  }
+  .stakeholder-card-footer {
+    padding: 14px 22px;
+    border-top: 1px solid var(--gray-100);
     font-size: 13px;
     color: var(--gray-500);
     line-height: 1.55;
-    background: #fff;
+    background: var(--gray-50);
   }
-  .chat-scene-footer strong {
-    color: var(--gray-700);
-  }
+
+  /* ── Mock site / Chat widget responsive ── */
   @media (max-width: 768px) {
-    .chat-demo-grid { grid-template-columns: 1fr; }
+    .workflow-flow { flex-direction: column; align-items: center; gap: 4px; }
+    .workflow-arrow { transform: rotate(90deg); padding: 4px 0; margin-top: 0; }
+    .workflow-step { max-width: 280px; min-width: 200px; }
+    .mock-site-header { flex-direction: column; gap: 12px; text-align: center; }
+    .mock-site-nav { flex-wrap: wrap; justify-content: center; gap: 12px; }
+    .mock-hero h2 { font-size: 24px; }
+    .mock-services { flex-direction: column; align-items: center; }
+    .mock-service-card { max-width: 260px; width: 100%; }
+    .mock-site { min-height: auto; }
+    .chat-widget {
+      position: static;
+      width: 100%;
+      padding: 20px;
+      align-items: stretch;
+    }
+    .chat-widget-window { width: 100%; }
+    .chat-widget-trigger { display: none; }
+    .stakeholder-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .mock-site-nav a { font-size: 11px; }
+    .mock-hero { padding: 32px 20px; }
+    .mock-services { padding: 20px; }
   }
 </style>
 </head>
@@ -949,147 +1270,204 @@
 
 <hr class="divider">
 
-<!-- ════════════════ CONVERSATION DEMO ════════════════ -->
+<!-- ════════════════ SECTION A: PM WORKFLOW ════════════════ -->
 <section class="section">
-  <div class="section-label reveal">How It Works</div>
-  <h2 class="section-title reveal">The Booking Conversation</h2>
-  <p class="section-subtitle reveal">What the customer experiences when they chat or call a business &mdash; the AI handles the entire booking flow in real time.</p>
+  <div class="section-label reveal">PM Workflow</div>
+  <h2 class="section-title reveal">How I Built This Integration</h2>
+  <p class="section-subtitle reveal">End-to-end ownership from discovery to production &mdash; what a Product Manager does to ship an AI-to-platform integration.</p>
 
-  <div class="chat-demo-grid">
+  <div class="workflow-flow reveal">
+    <div class="workflow-step">
+      <span class="step-icon">&#128269;</span>
+      <span class="step-title">Discovery</span>
+      <span class="step-desc">Mapped 40K websites, analysed APIs, identified reference pattern</span>
+    </div>
+    <span class="workflow-arrow">&#8594;</span>
+    <div class="workflow-step">
+      <span class="step-icon">&#128196;</span>
+      <span class="step-title">Mission Brief</span>
+      <span class="step-desc">11 edge cases, 5 outcomes, RACI, phasing strategy</span>
+    </div>
+    <span class="workflow-arrow">&#8594;</span>
+    <div class="workflow-step">
+      <span class="step-icon">&#129309;</span>
+      <span class="step-title">Partner Approval</span>
+      <span class="step-desc">6 supporters reviewed, partner signed off</span>
+    </div>
+    <span class="workflow-arrow">&#8594;</span>
+    <div class="workflow-step">
+      <span class="step-icon">&#9881;</span>
+      <span class="step-title">Engineering</span>
+      <span class="step-desc">Defined 4 MCP tools, cloud function specs, API contracts</span>
+    </div>
+    <span class="workflow-arrow">&#8594;</span>
+    <div class="workflow-step">
+      <span class="step-icon">&#129302;</span>
+      <span class="step-title">AI Configuration</span>
+      <span class="step-desc">Registered capability, wrote tool specs for Voice + Chat</span>
+    </div>
+    <span class="workflow-arrow">&#8594;</span>
+    <div class="workflow-step">
+      <span class="step-icon">&#128640;</span>
+      <span class="step-title">Operations Setup</span>
+      <span class="step-desc">Connect each business in under 10 minutes</span>
+    </div>
+  </div>
 
-    <!-- Scene 1: List Services -->
-    <div class="chat-scene reveal">
-      <div class="chat-scene-header">
-        <span class="scene-num">1</span>
-        <span class="scene-title">Customer Asks About Services</span>
+  <div class="workflow-note reveal">
+    I defined the booking tools (list services, check availability, create appointment, look up booking), wrote the API specifications for engineering, managed the mid-build API migration when the platform changed their API, and coordinated delivery across the integration team, AI platform team, and external contacts across three time zones.
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ════════════════ SECTION B: MOCK WEBSITE + CHAT WIDGET ════════════════ -->
+<section class="section">
+  <div class="section-label reveal">Customer Experience</div>
+  <h2 class="section-title reveal">The Booking Flow on the Business Website</h2>
+  <p class="section-subtitle reveal">A customer visits the business website. The AI chat widget handles the entire booking &mdash; from service selection to confirmation.</p>
+
+  <div class="mock-browser reveal">
+    <div class="browser-chrome">
+      <div class="browser-dots">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-      <div class="chat-window">
-        <div class="chat-msg user">What services do you offer?</div>
-        <div class="chat-msg ai">
-          <span class="ai-label">AI Receptionist</span>
-          We offer the following services:
-          <ul>
-            <li>Men&rsquo;s Haircut &mdash; 30 min, $25</li>
-            <li>Women&rsquo;s Cut &amp; Blow-Dry &mdash; 60 min, $55</li>
-            <li>Kids&rsquo; Haircut &mdash; 20 min, free</li>
-            <li>Fringe / Bang Trim &mdash; 15 min, free</li>
-          </ul>
-          Would you like to book any of these?
+      <div class="browser-bar">www.example-salon.com</div>
+    </div>
+    <div class="mock-site">
+      <!-- Site header -->
+      <div class="mock-site-header">
+        <div class="mock-site-logo">glow.</div>
+        <nav class="mock-site-nav">
+          <a href="#">HOME</a>
+          <a href="#">TREATMENTS</a>
+          <a href="#">ABOUT</a>
+          <a href="#">CONTACT</a>
+          <span class="mock-cta">BOOK AN APPOINTMENT</span>
+        </nav>
+      </div>
+      <!-- Hero -->
+      <div class="mock-hero">
+        <h2>Your glow, our passion</h2>
+        <p>Premium beauty services in the heart of the city</p>
+      </div>
+      <!-- Services -->
+      <div class="mock-services">
+        <div class="mock-service-card">
+          <div class="svc-name">Men&rsquo;s Haircut</div>
+          <div class="svc-price">$25</div>
+        </div>
+        <div class="mock-service-card">
+          <div class="svc-name">Women&rsquo;s Cut</div>
+          <div class="svc-price">$55</div>
+        </div>
+        <div class="mock-service-card">
+          <div class="svc-name">Kids&rsquo; Haircut</div>
+          <div class="svc-price">Free</div>
         </div>
       </div>
-      <div class="chat-scene-footer">
-        <strong>What happened:</strong> AI called the <em>list_appointment_types</em> MCP tool &rarr; booking platform API returned all services with duration and pricing.
+      <!-- Chat widget -->
+      <div class="chat-widget">
+        <div class="chat-widget-window">
+          <div class="chat-widget-header">
+            <div>
+              <div class="cw-title">AI Receptionist</div>
+              <div class="cw-status"><span class="cw-status-dot"></span> Online</div>
+            </div>
+          </div>
+          <div class="chat-widget-body">
+            <div class="chat-msg sm user">I&rsquo;d like a kids haircut</div>
+            <div class="chat-msg sm ai">
+              <span class="ai-label">AI Receptionist</span>
+              Available tomorrow at 9:00 AM, 9:20 AM, 9:40 AM. Want to book?
+            </div>
+            <div class="chat-msg sm user">9 AM please</div>
+            <div class="chat-msg sm ai">
+              <span class="ai-label">AI Receptionist</span>
+              What&rsquo;s your name?
+            </div>
+            <div class="chat-msg sm user">Maria</div>
+            <div class="chat-msg sm ai">
+              <span class="ai-label">AI Receptionist</span>
+              <div class="confirm-box">
+                <p><strong>Service:</strong> Kids&rsquo; Haircut</p>
+                <p><strong>Date:</strong> Thu Aug 14</p>
+                <p><strong>Time:</strong> 9:00 AM</p>
+                <p><strong>Name:</strong> Maria</p>
+              </div>
+            </div>
+          </div>
+          <div class="chat-widget-input">
+            <span>Type here...</span>
+            <button class="send-btn">Send</button>
+          </div>
+        </div>
+        <div class="chat-widget-trigger">&#128172;</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ════════════════ SECTION C: THREE STAKEHOLDERS ════════════════ -->
+<section class="section">
+  <div class="section-label reveal">Who Sees What</div>
+  <h2 class="section-title reveal">Three Stakeholders, One Booking</h2>
+  <p class="section-subtitle reveal">The same booking flows to three different people &mdash; each sees what they need.</p>
+
+  <div class="stakeholder-grid">
+    <!-- Customer -->
+    <div class="stakeholder-card teal-accent reveal">
+      <div class="stakeholder-card-header">
+        <span class="sh-icon">&#128113;</span>
+        <h4>Customer</h4>
+      </div>
+      <div class="stakeholder-card-body">
+        <div class="sh-line"><strong>Your Kids&rsquo; Haircut is confirmed!</strong></div>
+        <div class="sh-line">Thu Aug 14, 9:00 AM</div>
+        <div class="sh-line">Confirmation sent to your email</div>
+      </div>
+      <div class="stakeholder-card-footer">
+        Gets instant confirmation on the website chat or phone call. No callback needed.
       </div>
     </div>
 
-    <!-- Scene 2: Check Availability -->
-    <div class="chat-scene reveal">
-      <div class="chat-scene-header">
-        <span class="scene-num">2</span>
-        <span class="scene-title">AI Checks Real-Time Availability</span>
+    <!-- Business Owner -->
+    <div class="stakeholder-card amber-accent reveal">
+      <div class="stakeholder-card-header">
+        <span class="sh-icon">&#128197;</span>
+        <h4>Business Owner</h4>
       </div>
-      <div class="chat-window">
-        <div class="chat-msg user">What slots are available for a kids haircut?</div>
-        <div class="chat-msg ai">
-          <span class="ai-label">AI Receptionist</span>
-          Here are the upcoming available slots:
-          <ul>
-            <li><strong>Today (Wed):</strong> 11:20 AM, 11:40 AM, 12:00 PM, 12:20 PM</li>
-            <li><strong>Tomorrow (Thu):</strong> 9:00 AM and throughout the day in 20-min intervals</li>
-            <li>More slots on Aug 3, 4, and 5</li>
-          </ul>
-          Would you like to book a specific time?
-        </div>
+      <div class="stakeholder-card-body">
+        <div class="sh-line"><strong>Thu, August 14</strong></div>
+        <div class="sh-line">9:00 AM &mdash; Kids&rsquo; Haircut &mdash; Maria</div>
+        <div class="sh-line">9:20 AM &mdash; Men&rsquo;s Haircut &mdash; Luca</div>
+        <div class="sh-line">10:00 AM &mdash; Available</div>
       </div>
-      <div class="chat-scene-footer">
-        <strong>What happened:</strong> AI called the <em>check_availability</em> MCP tool &rarr; platform returned real-time free slots for the requested service, timezone-aware.
+      <div class="stakeholder-card-footer">
+        Sees the appointment in their calendar immediately. Staff schedule updated. No manual entry.
       </div>
     </div>
 
-    <!-- Scene 3: Collect Details -->
-    <div class="chat-scene reveal">
-      <div class="chat-scene-header">
-        <span class="scene-num">3</span>
-        <span class="scene-title">AI Collects Booking Details</span>
+    <!-- Partner -->
+    <div class="stakeholder-card green-accent reveal">
+      <div class="stakeholder-card-header">
+        <span class="sh-icon">&#128200;</span>
+        <h4>Partner</h4>
       </div>
-      <div class="chat-window">
-        <div class="chat-msg user">Book at 9 AM tomorrow</div>
-        <div class="chat-msg ai">
-          <span class="ai-label">AI Receptionist</span>
-          To book your Kids&rsquo; Haircut at 9:00 AM on Thursday, I&rsquo;ll need a few details. Could you provide your full name?
-        </div>
-        <div class="chat-msg user">Maria</div>
-        <div class="chat-msg ai">
-          <span class="ai-label">AI Receptionist</span>
-          Thank you, Maria. May I have your email address to send the confirmation?
-        </div>
-        <div class="chat-msg user">maria@email.com</div>
+      <div class="stakeholder-card-body">
+        <div class="sh-line">AI Bookings This Week: <strong>47</strong></div>
+        <div class="sh-line">Booking Success Rate: <strong>89%</strong></div>
+        <div class="sh-line">Active Businesses: <strong>124 / 40,000</strong></div>
+        <div class="sh-line">Voice + Chat Attribution: <strong>tracked</strong></div>
       </div>
-      <div class="chat-scene-footer">
-        <strong>What happened:</strong> AI progressively collected name, email, and service preference &mdash; same fields whether on voice call or web chat.
+      <div class="stakeholder-card-footer">
+        Monitors AI performance across all their businesses. Measures ROI of the integration.
       </div>
     </div>
-
-    <!-- Scene 4: Booking Confirmed -->
-    <div class="chat-scene reveal">
-      <div class="chat-scene-header" style="background: var(--green);">
-        <span class="scene-num">4</span>
-        <span class="scene-title">Booking Confirmed Instantly</span>
-      </div>
-      <div class="chat-window">
-        <div class="chat-msg ai">
-          <span class="ai-label">AI Receptionist</span>
-          Your appointment has been booked! Here are your details:
-          <div class="confirm-box">
-            <p><strong>Service:</strong> Kids&rsquo; Haircut</p>
-            <p><strong>Date:</strong> Thursday, August 14</p>
-            <p><strong>Time:</strong> 9:00 AM</p>
-            <p><strong>Name:</strong> Maria</p>
-            <p><strong>Email:</strong> maria@email.com</p>
-          </div>
-          Thank you for booking! We look forward to seeing you.
-        </div>
-      </div>
-      <div class="chat-scene-footer">
-        <strong>What happened:</strong> AI called the <em>create_appointment</em> MCP tool &rarr; booking created in the business calendar instantly. Idempotency key prevents double-booking if retried.
-      </div>
-    </div>
-
-    <!-- Scene 5: Full picture -->
-    <div class="chat-scene full-width reveal">
-      <div class="chat-scene-header" style="background: var(--gray-800);">
-        <span class="scene-num">5</span>
-        <span class="scene-title">What the Partner and Business Owner See</span>
-      </div>
-      <div class="chat-window" style="flex-direction: row; gap: 20px; flex-wrap: wrap;">
-        <div style="flex: 1; min-width: 240px;">
-          <div style="font-size: 13px; font-weight: 700; color: var(--teal); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px;">Partner Dashboard</div>
-          <div class="chat-msg ai" style="max-width: 100%; margin-bottom: 8px;">
-            <span class="ai-label">Conversation Thread</span>
-            Full chat transcript visible &mdash; every message from the customer and the AI, timestamped and attributed. Business owner sees exactly what was said and that the booking was confirmed.
-          </div>
-          <div class="chat-msg ai" style="max-width: 100%;">
-            <span class="ai-label">Voice Call History</span>
-            Phone calls appear in the same inbox alongside chat conversations. Single view for all customer interactions across channels.
-          </div>
-        </div>
-        <div style="flex: 1; min-width: 240px;">
-          <div style="font-size: 13px; font-weight: 700; color: var(--amber); text-transform: uppercase; letter-spacing: .5px; margin-bottom: 10px;">Business Calendar</div>
-          <div class="chat-msg ai" style="max-width: 100%; margin-bottom: 8px;">
-            <span class="ai-label">Appointment Created</span>
-            The booking appears immediately in the website platform&rsquo;s calendar with all customer details. Staff see it in their schedule. No manual entry needed.
-          </div>
-          <div class="chat-msg ai" style="max-width: 100%;">
-            <span class="ai-label">AI Attribution</span>
-            Every booking is tagged as AI-created for tracking. The partner can measure how many appointments the AI Receptionist books versus manual bookings.
-          </div>
-        </div>
-      </div>
-      <div class="chat-scene-footer">
-        <strong>Three stakeholders, one flow:</strong> The <em>customer</em> gets instant confirmation. The <em>business owner</em> sees the appointment in their calendar. The <em>partner</em> tracks AI performance across all their businesses. This is the PM/Partner/SMB collaboration pattern I designed.
-      </div>
-    </div>
-
   </div>
 </section>
 
