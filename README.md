@@ -20,6 +20,17 @@ Interactive GitHub Pages demo showcasing the Italia Online (IOL) Stripe Connect 
 
 Italia Online is Italy's largest digital services network, serving 130,000 paying SMBs through 700+ sales agents. This case study documents the end-to-end integration of Stripe Connect (Standard model) for automated EUR billing, product activation, and partner onboarding.
 
+## Northstar Metrics
+
+| Metric | Value |
+|--------|-------|
+| Paying SMBs (Vendasta) | 12,605 (10,125 MatchCraft + 2,480 Vendasta) |
+| AI Deployed | 651 SMB AI Deployed (21,600% growth from 3) |
+| Combined Billing | $120K/mo |
+| Total Addressable SMBs | 130,000 |
+| Sales Agents | 700+ |
+| Websites Managed | 40,000 |
+
 ## Key Integration Components
 
 - **Stripe Connect** — Standard account model with EUR multi-currency support
